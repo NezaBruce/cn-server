@@ -12,3 +12,5 @@ const messageSchema = mongoose.Schema(
 
 const Message = mongoose.model("message", messageSchema);
 module.exports = Message;
+
+// npx sequelize-cli model:generate --name User --attributes firstName:string,lastName:string

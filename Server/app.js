@@ -14,11 +14,15 @@ const messageController = require("./controller/messages");
 app.use("/auth", userController);
 app.use("/chat", chatController);
 app.use("/message", messageController);
-
+app.use("/",(req,res)=>{
+  res.send("welcome champs");
+})
 const PORT = process.env.PORT || 5001;
 let server = app.listen(PORT, async (req, res) => {
   try {
-    await connect();
+    await connect().then(()=>{
+      console.log("connected successfulyy")
+    });
   } catch (err) {
     console.log(err.message);
   }
@@ -28,7 +32,7 @@ const io = socket(server, {
   pingTimeout: 6000,
   cors: {
     "Access-Control-Allow-Origin": "*",
-    origin: "https://messanger-beryl.vercel.app",
+    origin: "*",
     // credentials: true,
   },
 });
